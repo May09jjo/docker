@@ -7,3 +7,7 @@ Template: twentyseventeen
 */
 
 @import url("../twentyseventeen/style.css");
+
+h2.widget-title {
+  color: #328e72;
+}
