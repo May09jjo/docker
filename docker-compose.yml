@@ -1,0 +1,44 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysql-data
+      #- ./db.sql:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'eQ7wCjcMD!r9@3Av8%wi'
+      MYSQL_DATABASE: docker_demo
+      MYSQL_USER: dd_admin
+      MYSQL_PASSWORD: 'me gusta resolver'
+    networks:
+      default:
+        ipv4_address: 172.18.0.2
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    links:
+      - db
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: dd_admin
+      WORDPRESS_DB_NAME: docker_demo
+      WORDPRESS_DB_PASSWORD: 'me gusta resolver'
+    volumes:
+      - './wp-content:/var/www/html/wp-content/'
+    networks:
+      default:
+        ipv4_address: 172.18.0.3
+
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/24
+
+volumes:
+    db_data:
