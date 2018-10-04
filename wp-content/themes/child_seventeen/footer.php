@@ -11,9 +11,7 @@
  * @since 1.0
  * @version 1.2
  */
-
 ?>
-
 		</div><!-- #content -->
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="wrap">
@@ -34,7 +32,6 @@
 						?>
 					</nav><!-- .social-navigation -->
 				<?php endif;
-
 				get_template_part( 'template-parts/footer/site', 'info' );
 				?>
 			</div><!-- .wrap -->
